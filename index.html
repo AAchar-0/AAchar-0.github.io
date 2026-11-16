@@ -3,22 +3,26 @@
 <html lang="en"> <!-- lang helps screen readers and search engines know the language -->
 <head>
   <meta charset="UTF-8">
-  <!-- This line makes the page scale properly on phones: essential for responsiveness -->
+  <!-- Makes the page scale properly on phones: essential for responsiveness -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- SEO: the title and description are what Google shows in search results -->
   <title>Anade A’Acharo | Python and Full-Stack Developer</title>
-  <meta name="description" content="Freelance Python and full-stack developer building data dashboards, responsive websites, and REST APIs for clients worldwide.">
+  <meta name="description" content="Freelance Python and full-stack developer building data dashboards, responsive websites, and REST APIs, with scholarly writing and editing support for clients worldwide.">
   <link rel="canonical" href="https://aachar-0.github.io/">
   <meta name="author" content="Anade A’Acharo">
 
-  <!-- Open Graph / Twitter: controls the preview card when the link is shared on LinkedIn -->
+  <!-- Open Graph / Twitter: the preview card shown when the link is shared on LinkedIn.
+       og-image.jpg is a 1200x630 card made by tools/make_og_image.py (face fully visible) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Anade A’Acharo | Python and Full-Stack Developer">
   <meta property="og:description" content="Data dashboards, websites, and APIs built to be fast, tested, and documented.">
   <meta property="og:url" content="https://aachar-0.github.io/">
-  <meta property="og:image" content="https://aachar-0.github.io/assets/photo.jpeg">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://aachar-0.github.io/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Portrait of Anade A’Acharo, Python and full-stack developer">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Structured data: tells search engines exactly who this page is about -->
   <script type="application/ld+json">
@@ -29,8 +33,8 @@
     "jobTitle": "Python and Full-Stack Developer",
     "url": "https://aachar-0.github.io/",
     "image": "https://aachar-0.github.io/assets/photo.jpeg",
-    "sameAs": ["https://github.com/AAchar-0"],
-    "knowsAbout": ["Python", "Java", "JavaScript", "SQL", "Data visualization", "REST APIs", "Applied mathematics"]
+    "sameAs": ["https://github.com/AAchar-0", "https://www.linkedin.com/in/anade-archyphilus-acharo-9b83a5324/"],
+    "knowsAbout": ["Python", "Java", "JavaScript", "SQL", "Data visualization", "REST APIs", "Applied mathematics", "Academic editing", "Scholarly writing"]
   }
   </script>
 
@@ -49,11 +53,12 @@
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="brand" href="#top"><img class="logo" src="assets/logo.jpeg" width="40" height="40" alt=""> Anade Archyphilus A’Acharo</a>
+    <a class="brand" href="#top"><img class="logo" src="assets/logo.jpeg" width="40" height="40" alt=""> <span>Anade Archyphilus A’Acharo</span></a>
     <nav id="nav" aria-label="Main">
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
+      <a href="#writing">Writing</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-actions">
@@ -116,10 +121,22 @@
       <p>I write Python, Java, SQL, and JavaScript, and I build projects that take a real problem from raw data to a deployed result. A strong background in mathematics, physics, and chemistry shapes how I model data and test results. I only use public datasets with clear licenses.</p>
     </section>
 
+    <section id="writing">
+      <h2>Scholarly writing support</h2>
+      <p>Clear writing helps good research get read. I help students, researchers, and authors turn rough drafts into polished English.</p>
+      <ul class="projects">
+        <li><h3>Editing and proofreading</h3><p>Grammar, clarity, tone, and flow in theses, papers, and reports.</p></li>
+        <li><h3>Structure and argument</h3><p>Stronger introductions, tighter paragraphs, and a clear line of reasoning.</p></li>
+        <li><h3>Citations and formatting</h3><p>APA, MLA, Harvard, and journal-specific styles, applied consistently.</p></li>
+        <li><h3>Technical and data writing</h3><p>Methods, results, and figure captions that explain data accurately.</p></li>
+      </ul>
+      <p>I improve and edit your own work. I don’t write assignments for you to submit as yours.</p>
+    </section>
+
     <section id="contact">
       <h2>Contact</h2>
-      <!-- Formspree receives the message and emails it to you. See the setup steps. -->
-      <form id="contact-form" action="https://formspree.io/f/f/xkjrjvyl" method="POST">
+      <!-- Formspree receives the message and emails it to you -->
+      <form id="contact-form" action="https://formspree.io/f/xkjrjvyl" method="POST">
         <label for="name">Name</label>
         <input id="name" name="name" type="text" autocomplete="name" required>
         <label for="email">Email</label>
@@ -137,7 +154,6 @@
   <footer>
     <p>© <span id="year">2026</span> Anade A’Acharo ·
       <a href="https://github.com/AAchar-0" rel="noopener">GitHub</a> ·
-      <!-- Replace with your real LinkedIn address -->
       <a href="https://www.linkedin.com/in/anade-archyphilus-acharo-9b83a5324/" rel="noopener">LinkedIn</a></p>
   </footer>
 

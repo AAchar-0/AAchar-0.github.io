@@ -6,6 +6,12 @@
 const menuBtn = document.querySelector('.menu-btn');
 const nav = document.querySelector('#nav');
 
+// One small function that closes the menu, so every part below can reuse it.
+function closeMenu() {
+  nav.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+}
+
 // addEventListener runs a function whenever the event (here 'click') happens.
 menuBtn.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('open');     // add/remove the 'open' class
@@ -14,10 +20,20 @@ menuBtn.addEventListener('click', () => {
 
 // Close the menu after a link is tapped (forEach loops over each link).
 nav.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
-  });
+  link.addEventListener('click', closeMenu);
+});
+
+// Close the menu when the visitor taps anywhere outside it.
+// event.target is the exact element that was clicked;
+// contains() checks whether that element is inside the menu or the Menu button.
+document.addEventListener('click', (event) => {
+  const clickedInsideMenu = nav.contains(event.target) || menuBtn.contains(event.target);
+  if (!clickedInsideMenu) closeMenu();
+});
+
+// Close the menu with the Escape key too (helps keyboard users).
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenu();
 });
 
 // ---------- 1b. Theme button ----------
