@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- The doctype tells the browser to use modern HTML5 rules. -->
+<html lang="en"> <!-- lang helps screen readers and search engines know the language -->
+<head>
+  <meta charset="UTF-8">
+  <!-- This line makes the page scale properly on phones: essential for responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO: the title and description are what Google shows in search results -->
+  <title>Anade A’Acharo | Python and Full-Stack Developer</title>
+  <meta name="description" content="Freelance Python and full-stack developer building data dashboards, responsive websites, and REST APIs for clients worldwide.">
+  <link rel="canonical" href="https://aachar-0.github.io/">
+  <meta name="author" content="Anade A’Acharo">
+
+  <!-- Open Graph / Twitter: controls the preview card when the link is shared on LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Anade A’Acharo | Python and Full-Stack Developer">
+  <meta property="og:description" content="Data dashboards, websites, and APIs built to be fast, tested, and documented.">
+  <meta property="og:url" content="https://aachar-0.github.io/">
+  <meta property="og:image" content="https://aachar-0.github.io/assets/photo.jpeg">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Structured data: tells search engines exactly who this page is about -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Anade A’Acharo",
+    "jobTitle": "Python and Full-Stack Developer",
+    "url": "https://aachar-0.github.io/",
+    "image": "https://aachar-0.github.io/assets/photo.jpeg",
+    "sameAs": ["https://github.com/AAchar-0"],
+    "knowsAbout": ["Python", "Java", "JavaScript", "SQL", "Data visualization", "REST APIs", "Applied mathematics"]
+  }
+  </script>
+
+  <!-- Fonts load from Google; the fallback fonts in the CSS show while they download -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    /* Runs before the page paints: re-applies the theme the visitor chose last time */
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Skip link: lets keyboard users jump past the menu (accessibility) -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top"><img class="logo" src="assets/logo.jpeg" width="40" height="40" alt=""> Anade Archyphilus A’Acharo</a>
+    <nav id="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <!-- Theme button: script.js swaps the icon and the label -->
+      <button class="theme-btn" type="button" aria-label="Switch to dark theme"><span aria-hidden="true">🌙</span></button>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO: one h1 per page is an SEO rule -->
+    <section class="hero" id="top">
+      <img class="photo" src="assets/photo.jpeg" width="220" height="220"
+           alt="Portrait of Anade A’Acharo, Python and full-stack developer">
+      <div>
+        <h1>Python and Full-Stack Developer</h1>
+        <p class="lead">I build data dashboards, websites, and APIs that load fast, work on every screen, and ship with tests and documentation.</p>
+        <p class="actions">
+          <a class="btn" href="#contact">Start a project</a>
+          <a class="btn ghost" href="#projects">See upcoming work</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2>What I build</h2>
+      <dl class="services">
+        <div><dt>Data dashboards</dt>
+          <dd>Clean your data, store it in SQL, and turn it into interactive charts your team can use without code.</dd></div>
+        <div><dt>Websites</dt>
+          <dd>Responsive, accessible sites built for search: fast loading, structured data, and clear page titles.</dd></div>
+        <div><dt>APIs</dt>
+          <dd>Secure back ends in Java or Node with authentication, a database, and live documentation.</dd></div>
+      </dl>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>I’m publishing seven projects over the coming weeks. Each one gets a live demo and source code. Links go live as they ship.</p>
+      <!-- Replace each href="#" with the real GitHub link when a project is done,
+           and change the status text from "In progress" to "Live" -->
+      <ul class="projects">
+        <li><h3>E-commerce analytics dashboard</h3><p>Python, SQL, Streamlit</p>
+          <a href="#" class="status">In progress</a></li>
+        <li><h3>Consent-based face verification</h3><p>Python, OpenCV</p>
+          <a href="#" class="status">In progress</a></li>
+        <li><h3>Booking app with AI assistant</h3><p>JavaScript, Node, SQL</p>
+          <a href="#" class="status">Planned</a></li>
+        <li><h3>REST API for inventory</h3><p>Java, Spring Boot, PostgreSQL</p>
+          <a href="#" class="status">Planned</a></li>
+        <li><h3>Concurrent log analyzer</h3><p>Java</p>
+          <a href="#" class="status">Planned</a></li>
+        <li><h3>Small-business website</h3><p>HTML, CSS, JavaScript</p>
+          <a href="#" class="status">Planned</a></li>
+      </ul>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>I write Python, Java, SQL, and JavaScript, and I build projects that take a real problem from raw data to a deployed result. A strong background in mathematics, physics, and chemistry shapes how I model data and test results. I only use public datasets with clear licenses.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <!-- Formspree receives the message and emails it to you. See the setup steps. -->
+      <form id="contact-form" action="https://formspree.io/f/f/xkjrjvyl" method="POST">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <label for="country">Country</label>
+        <input id="country" name="country" type="text" autocomplete="country-name" required>
+        <label for="message">What do you need built?</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button class="btn" type="submit">Send message</button>
+        <p id="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year">2026</span> Anade A’Acharo ·
+      <a href="https://github.com/AAchar-0" rel="noopener">GitHub</a> ·
+      <!-- Replace with your real LinkedIn address -->
+      <a href="https://www.linkedin.com/in/anade-archyphilus-acharo-9b83a5324/" rel="noopener">LinkedIn</a></p>
+  </footer>
+
+  <!-- defer: the script runs after the page has loaded -->
+  <script src="js/script.js" defer></script>
+</body>
+</html>
