@@ -125,6 +125,14 @@ input, textarea {
 form .btn { justify-self: start; margin-top: 1rem; }
 
 footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--muted); }
+/* Footer: copyright on the left, social links on the right; stacks on narrow screens */
+footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+footer p { margin: 0; }
+.social { display: flex; flex-wrap: wrap; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+.social a { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 0;  /* padding = bigger tap area */
+  color: var(--ink); text-decoration: none; font-weight: 600; }
+.social a:hover { color: var(--accent); }
+.social svg { width: 1.4rem; height: 1.4rem; fill: currentColor; }  /* takes the text colour, so it follows the theme */
 
 /* ---------- 8. Responsive rules: apply only on narrow screens ---------- */
 @media (max-width: 720px) {
