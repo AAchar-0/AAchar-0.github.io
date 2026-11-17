@@ -5,7 +5,7 @@ WIDTH, HEIGHT = 1200, 630        # LinkedIn's preferred size (about 1.91 : 1)
 BACKGROUND = (16, 26, 36)        # same dark navy as the site (#101a24)
 
 # Open the photo and convert to plain RGB colour (drops any transparency).
-photo = Image.open("assets/photo.jpeg").convert("RGB")
+photo = Image.open("assets/photo.jpg").convert("RGB")
 
 # Scale so the WHOLE photo fits the card's height; nothing gets cropped.
 scale = HEIGHT / photo.height
