@@ -94,3 +94,34 @@ form.addEventListener('submit', async (event) => {
     statusText.textContent = 'No connection. Check your internet and try again.';
   }
 });
+
+// ---------- 4. Scroll progress bar ----------
+// The bar under the header grows from 0 to full width as the page is scrolled.
+const progressBar = document.querySelector('.scroll-progress');
+
+function updateScrollProgress() {
+  // How far the page can scroll = total page height minus the visible window height.
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  // 0 at the very top, 1 at the very bottom. The check avoids dividing by 0 on a short page.
+  const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+  // Clamp to 0..1: phones can briefly scroll past the ends (elastic bounce).
+  const clamped = Math.min(1, Math.max(0, progress));
+  // scaleX stretches the bar horizontally; the GPU does it, so it stays smooth.
+  progressBar.style.transform = `scaleX(${clamped})`;
+}
+
+// Scroll events can fire many times per frame. requestAnimationFrame runs the update
+// at most once per screen refresh, which keeps the motion smooth and cheap.
+let scrollTicking = false;
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(() => {
+      updateScrollProgress();
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });   // passive: tells the browser this listener never blocks scrolling
+
+window.addEventListener('resize', updateScrollProgress);   // page height changes when the window resizes
+updateScrollProgress();                                     // set the right width on page load
