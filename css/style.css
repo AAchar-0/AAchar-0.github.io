@@ -217,6 +217,7 @@ footer p { margin: 0; }
   border-radius: 6px;                 /* same corner as the main buttons */
   font: 600 .875rem/1.4 "Source Sans 3", sans-serif;
   text-decoration: none;
+  cursor: pointer;                       /* not clickable by default */
 }
 
 /* Finished: clickable and filled teal, like "Start a project" but smaller (Live and Source code share it) */
