@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use or adapt this website's code or documentation, please cite it as below."
+title: "Developer Portfolio Website"
+type: software
+authors:
+  - family-names: "A'Acharo"
+    given-names: "Anade Archyphilus"
+repository-code: "https://github.com/AAchar-0/AAchar-0.github.io"
+url: "https://aachar-0.github.io/"
+license: MIT
+date-released: 2026-11-20
+abstract: "A fast, accessible and search-optimised portfolio website built with plain HTML, CSS and JavaScript."
+keywords:
+  - portfolio
+  - web development
+  - accessibility
+  - SEO

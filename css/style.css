@@ -181,8 +181,12 @@ footer p { margin: 0; }
 
 /* ---------- 9. Scroll progress bar ---------- */
 /* Hide the browser's own page scrollbar. Scrolling still works with the wheel, touch and keys. */
-html { scrollbar-width: none; }             /* Firefox, and current Chrome and Edge */
-html::-webkit-scrollbar { display: none; }  /* older Chrome, Edge and Safari */
+/* Hide the browser's own page scrollbar on phones and narrow windows. On wide screens with a
+   mouse it stays visible, so visitors can drag it. The teal progress bar shows everywhere. */
+@media (max-width: 720px), (pointer: coarse) {
+  html { scrollbar-width: none; }             /* Firefox, and current Chrome and Edge */
+  html::-webkit-scrollbar { display: none; }  /* older Chrome, Edge and Safari */
+}
 
 /* The bar sits just below the header's bottom border (which stays as it is) and grows left to right */
 .scroll-progress {
@@ -200,3 +204,36 @@ html::-webkit-scrollbar { display: none; }  /* older Chrome, Edge and Safari */
 
 /* People who turn animations off in their system settings get no easing */
 @media (prefers-reduced-motion: reduce) { .scroll-progress { transition: none; } }
+
+
+/* ---------- 10. Project status chips ---------- */
+/* Small button-style labels under each project. Links look like the main buttons, only smaller. */
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
+
+.chip {
+  display: inline-block;
+  padding: .4rem .9rem;
+  border: 2px solid transparent;
+  border-radius: 6px;                 /* same corner as the main buttons */
+  font: 600 .875rem/1.4 "Source Sans 3", sans-serif;
+  text-decoration: none;
+}
+
+/* Finished: clickable and filled teal, like "Start a project" but smaller (Live and Source code share it) */
+a.chip-live { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+a.chip-live:hover { filter: brightness(1.1); }
+
+/* In progress: not clickable yet, so muted amber with a dashed outline.
+   color-mix blends the theme colours, so it adapts to light and dark mode. */
+.chip-progress {
+  background: color-mix(in srgb, var(--focus) 16%, var(--bg));
+  border: 2px dashed color-mix(in srgb, var(--focus) 60%, var(--bg));
+  color: color-mix(in srgb, var(--focus) 45%, var(--ink));
+}
+
+/* Planned: not clickable yet, so muted grey-blue with a dashed outline */
+.chip-planned {
+  background: color-mix(in srgb, var(--muted) 10%, var(--bg));
+  border: 2px dashed var(--line);
+  color: var(--muted);
+}

@@ -100,21 +100,24 @@
     <section id="projects">
       <h2>Projects</h2>
       <p>I’m publishing seven projects over the coming weeks. Each one gets a live demo and source code. Links go live as they ship.</p>
-      <!-- Replace each href="#" with the real GitHub link when a project is done,
-           and change the status text from "In progress" to "Live" -->
+      <!-- Status chips: "Live" and "Source code" are links. "In progress" and "Planned" are plain labels
+           until a project ships. When it does, replace its label with link chips like the first card. -->
       <ul class="projects">
         <li><h3>E-commerce analytics dashboard</h3><p>Python, SQL, Streamlit</p>
-          <a href="#" class="status">In progress</a></li>
+          <div class="chips">
+            <a class="chip chip-live" href="https://aacharo-retail-analytics.streamlit.app/" rel="noopener">Live</a>
+            <a class="chip chip-live" href="https://github.com/AAchar-0/ecommerce-analytics-dashboard" rel="noopener">Source code</a>
+          </div></li>
         <li><h3>Consent-based face verification</h3><p>Python, OpenCV</p>
-          <a href="#" class="status">In progress</a></li>
+          <div class="chips"><span class="chip chip-progress">In progress</span></div></li>
         <li><h3>Booking app with AI assistant</h3><p>JavaScript, Node, SQL</p>
-          <a href="#" class="status">Planned</a></li>
+          <div class="chips"><span class="chip chip-planned">Planned</span></div></li>
         <li><h3>REST API for inventory</h3><p>Java, Spring Boot, PostgreSQL</p>
-          <a href="#" class="status">Planned</a></li>
+          <div class="chips"><span class="chip chip-planned">Planned</span></div></li>
         <li><h3>Concurrent log analyzer</h3><p>Java</p>
-          <a href="#" class="status">Planned</a></li>
+          <div class="chips"><span class="chip chip-planned">Planned</span></div></li>
         <li><h3>Small-business website</h3><p>HTML, CSS, JavaScript</p>
-          <a href="#" class="status">Planned</a></li>
+          <div class="chips"><span class="chip chip-planned">Planned</span></div></li>
       </ul>
     </section>
 
