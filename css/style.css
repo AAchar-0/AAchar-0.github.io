@@ -189,7 +189,7 @@ footer p { margin: 0; }
 /* Hide the browser's own page scrollbar. Scrolling still works with the wheel, touch and keys. */
 /* Hide the browser's own page scrollbar on phones and narrow windows. On wide screens with a
    mouse it stays visible, so visitors can drag it. The teal progress bar shows everywhere. */
-@media (max-width: 720px), (pointer: coarse), (min-width: 1060px) {
+@media (max-width: 720px), (pointer: coarse), (min-width: 1050px) {
   html { scrollbar-width: none; }             /* Firefox, and current Chrome and Edge */
   html::-webkit-scrollbar { display: none; }  /* older Chrome, Edge and Safari */
 }
@@ -247,46 +247,32 @@ a.chip-live:hover { filter: brightness(1.1); }
 
 
 /* ---------- 11. Photo scroll handle (wide screens with a mouse) ---------- */
-/* A small pin-shaped photo rides along the right edge as you scroll, and can be dragged.
-   Its point faces the edge of the screen. No track line. Hidden on phones, tablets and narrow windows,
-   where the page has no scrollbar. */
+/* A small round photo rides along the right edge as you scroll, and can be dragged.
+   No track line. Hidden on phones, tablets and narrow windows, where the page has no scrollbar. */
 .scroll-thumb { display: none; }
-@media (min-width: 1060px) and (pointer: fine) {
+@media (min-width: 1050px) and (pointer: fine) {
   .scroll-thumb {
     display: block;
-    position: fixed; top: 0; right: 12px;  /* JavaScript moves it down with translateY. The point sticks out ~8px further right. */
-    width: 38px; height: 38px;
+    position: fixed; top: 0; right: 4px;   /* JavaScript moves it down with translateY */
+    width: 40px; height: 40px;
     z-index: 20;
     cursor: grab;
     touch-action: none;                    /* lets the pointer drag it without the page scrolling instead */
   }
   .scroll-thumb[hidden] { display: none; } /* page too short to scroll */
   .scroll-thumb.dragging { cursor: grabbing; }
-  /* The pin: a square with three round corners and one sharp corner (top right),
-     then turned 45 degrees clockwise so the sharp corner points straight right. */
   .scroll-thumb-disc {
-    position: relative; overflow: hidden;
     display: block; width: 100%; height: 100%;
     box-sizing: border-box;
-    border-radius: 50% 0 50% 50%;
-    background: #fff;
+    border-radius: 50%;
+    background: #fff;                      /* the small white circle */
+    padding: 2px;                          /* thin white ring between the photo and the outline */
     border: 3px solid var(--accent);       /* same colour as the hero photo border; follows light and dark mode */
     box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
-    transform: rotate(45deg);
     transition: transform 120ms ease;
   }
-  /* Thin white ring between the photo and the coloured outline */
-  .scroll-thumb-disc::after {
-    content: ""; position: absolute; inset: 0;
-    border: 2px solid #fff; border-radius: inherit; pointer-events: none;
-  }
   .scroll-thumb:hover .scroll-thumb-disc,
-  .scroll-thumb.dragging .scroll-thumb-disc { transform: rotate(45deg) scale(1.12); }
-  /* The photo is turned back 45 degrees so the face stays upright, and enlarged to fill the corners */
-  .scroll-thumb img {
-    display: block; width: 100%; height: 100%;
-    object-fit: cover; object-position: center 20%;
-    transform: rotate(-45deg) scale(1.42);
-  }
+  .scroll-thumb.dragging .scroll-thumb-disc { transform: scale(1.12); }
+  .scroll-thumb img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center 20%; }
 }
 @media (prefers-reduced-motion: reduce) { .scroll-thumb-disc { transition: none; } }

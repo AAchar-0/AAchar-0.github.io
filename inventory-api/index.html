@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventory API</title>
+  <meta name="description" content="Java and Spring Boot REST API for products, categories and stock movements, with JWT login.">
+  <style>
+    :root { --bg:#f6f8fa; --panel:#ffffff; --ink:#12202f; --muted:#51606f; --line:#d5dde5; --accent:#0b7a75; --accent-ink:#ffffff; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#101a24; --panel:#17232f; --ink:#e8eef3; --muted:#a6b4c2; --line:#2a3a4a; --accent:#4fc3bc; --accent-ink:#08201f; }
+    }
+    body { margin:0; min-height:100vh; display:flex; flex-direction:column; background:var(--bg); color:var(--ink);
+           font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+    main { flex:1; width:min(720px,100% - 2.5rem); margin:0 auto; padding-block:3rem 1rem; }
+    h1 { margin:0 0 .5rem; font-size:clamp(1.7rem,4vw,2.3rem); }
+    p { color:var(--muted); }
+    .btn { display:inline-block; margin-top:.5rem; padding:.7rem 1.4rem; border-radius:8px; font-weight:600;
+           background:var(--accent); color:var(--accent-ink); text-decoration:none; }
+    .status { margin-top:1rem; padding:.6rem .9rem; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+    a:focus-visible { outline:3px solid #1a5fd0; outline-offset:2px; }
+    footer { width:min(720px,100% - 2.5rem); margin:2rem auto 0; padding-block:1.5rem; border-top:1px solid var(--line);
+             color:var(--muted); font-size:.95rem; }
+    footer p { margin:0; }
+    footer a { color:var(--accent); font-weight:600; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Inventory API</h1>
+    <p>A Java and Spring Boot REST API for products, categories and stock movements, with JWT login, two roles,
+       a row lock that prevents overselling, and automated tests.</p>
+    <p>Demo project: the products are sample data and nothing here is a real shop or a real purchase.</p>
+    <a class="btn" id="open" href="https://inventory-api-jl5m.onrender.com/docs">Open the API documentation</a>
+    <p class="status" id="status" role="status" aria-live="polite">Waking up the live API...</p>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year">2026</span> &middot; Created by Anade Acharo.
+       <a href="https://aachar-0.github.io/" rel="noopener">Portfolio</a>.
+       <a href="https://github.com/AAchar-0/inventory-api" rel="noopener">Source code</a></p>
+  </footer>
+
+  <script>
+    // WHY THIS PAGE EXISTS: this page is hosted on GitHub Pages, which never sleeps, so it opens instantly.
+    // The API runs on Render's free plan, which sleeps when idle and needs up to a minute to wake.
+    // As soon as this page loads, it sends the API a cheap request so the API wakes up while the visitor reads.
+    // The address below must be your real Render address (copy it from the Render dashboard).
+    const API = "https://inventory-api-jl5m.onrender.com";
+    const status = document.getElementById("status");
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("open").href = API + "/docs";
+
+    const started = Date.now();
+    const timer = setInterval(() => {
+      status.textContent = "Waking up the live API... " + Math.round((Date.now() - started) / 1000) + " s (free hosting can take about a minute)";
+    }, 1000);
+
+    // mode "no-cors": we cannot read the answer, but we do learn when the server has answered at all.
+    // /v3/api-docs also makes the server prepare the documentation, so the next page opens faster.
+    fetch(API + "/v3/api-docs", { mode: "no-cors", cache: "no-store" })
+      .then(() => { clearInterval(timer); status.textContent = "The API is awake. The documentation will open quickly."; })
+      .catch(() => { clearInterval(timer); status.textContent = "Could not reach the API right now. You can still try the button."; });
+  </script>
+</body>
+</html>

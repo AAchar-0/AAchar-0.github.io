@@ -133,8 +133,8 @@ updateScrollProgress();                                     // set the right wid
 // and can be dragged up and down to scroll. On phones and narrow windows it never appears.
 const thumb = document.querySelector('.scroll-thumb');
 const siteHeader = document.querySelector('.site-header');
-const wideMouse = window.matchMedia('(min-width: 1060px) and (pointer: fine)');
-const THUMB_SIZE = 38;   // must match width/height of .scroll-thumb in style.css
+const wideMouse = window.matchMedia('(min-width: 1050px) and (pointer: fine)');
+const THUMB_SIZE = 40;   // must match width/height of .scroll-thumb in style.css
 const EDGE_GAP = 10;     // breathing room in pixels at the top (under the header) and bottom
 
 function maxScroll() {
