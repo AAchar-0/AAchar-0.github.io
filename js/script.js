@@ -46,10 +46,10 @@ function currentTheme() {
   return document.documentElement.dataset.theme || (darkQuery.matches ? 'dark' : 'light');
 }
 
-// Moon means "tap for dark"; sun means "tap for light".
+// Moon icon means "tap for dark"; sun icon means "tap for light".
 function showTheme() {
   const dark = currentTheme() === 'dark';
-  themeBtn.firstElementChild.textContent = dark ? '☀️' : '🌙';
+  themeBtn.dataset.mode = dark ? 'dark' : 'light';   // style.css shows the outline sun in dark mode, the moon in light mode
   themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
 }
 
@@ -125,3 +125,69 @@ window.addEventListener('scroll', () => {
 
 window.addEventListener('resize', updateScrollProgress);   // page height changes when the window resizes
 updateScrollProgress();                                     // set the right width on page load
+
+
+
+// ---------- 5. Photo scroll handle (wide screens with a mouse only) ----------
+// style.css hides the browser's scrollbar there. This round photo shows where you are on the page
+// and can be dragged up and down to scroll. On phones and narrow windows it never appears.
+const thumb = document.querySelector('.scroll-thumb');
+const siteHeader = document.querySelector('.site-header');
+const wideMouse = window.matchMedia('(min-width: 1060px) and (pointer: fine)');
+const THUMB_SIZE = 38;   // must match width/height of .scroll-thumb in style.css
+const EDGE_GAP = 10;     // breathing room in pixels at the top (under the header) and bottom
+
+function maxScroll() {
+  return document.documentElement.scrollHeight - window.innerHeight;
+}
+
+// The vertical range the photo can travel: from just under the header to just above the window bottom.
+function thumbRange() {
+  const top = siteHeader.getBoundingClientRect().height + EDGE_GAP;
+  const bottom = Math.max(top, window.innerHeight - THUMB_SIZE - EDGE_GAP);
+  return { top, bottom };
+}
+
+function placeThumb() {
+  if (!wideMouse.matches) return;
+  const scrollable = maxScroll();
+  thumb.hidden = scrollable <= 0;                                   // nothing to scroll: hide it
+  const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+  const { top, bottom } = thumbRange();
+  thumb.style.transform = `translateY(${top + progress * (bottom - top)}px)`;
+}
+
+let thumbTicking = false;
+window.addEventListener('scroll', () => {
+  if (!thumbTicking) {
+    window.requestAnimationFrame(() => { placeThumb(); thumbTicking = false; });
+    thumbTicking = true;
+  }
+}, { passive: true });
+window.addEventListener('resize', placeThumb);
+wideMouse.addEventListener('change', placeThumb);
+
+// Dragging: pointer events cover mouse and pen. setPointerCapture keeps the drag going
+// even when the pointer slides off the small circle.
+let draggingThumb = false;
+thumb.addEventListener('pointerdown', (event) => {
+  draggingThumb = true;
+  thumb.setPointerCapture(event.pointerId);
+  thumb.classList.add('dragging');
+  event.preventDefault();                                           // stops the photo being dragged as an image
+});
+thumb.addEventListener('pointermove', (event) => {
+  if (!draggingThumb) return;
+  const { top, bottom } = thumbRange();
+  const y = Math.min(bottom, Math.max(top, event.clientY - THUMB_SIZE / 2));
+  const ratio = bottom > top ? (y - top) / (bottom - top) : 0;      // 0 = top of page, 1 = bottom
+  window.scrollTo({ top: ratio * maxScroll(), behavior: 'instant' });   // 'instant' skips the smooth scrolling
+});
+function endThumbDrag() {
+  draggingThumb = false;
+  thumb.classList.remove('dragging');
+}
+thumb.addEventListener('pointerup', endThumbDrag);
+thumb.addEventListener('pointercancel', endThumbDrag);
+
+placeThumb();
