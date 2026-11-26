@@ -69,6 +69,7 @@ document.querySelector('#year').textContent = new Date().getFullYear();
 // ---------- 3. Contact form ----------
 const form = document.querySelector('#contact-form');
 const statusText = document.querySelector('#form-status');
+const ARCHIVE_URL = 'https://contact-archive.anadeacharo.workers.dev/submit';
 
 // 'async' lets us use 'await' to pause until the network request finishes.
 form.addEventListener('submit', async (event) => {
@@ -77,13 +78,16 @@ form.addEventListener('submit', async (event) => {
 
   try {
     // fetch sends the form data to Formspree in the background.
+    const data = new FormData(form);
     const response = await fetch(form.action, {
       method: 'POST',
-      body: new FormData(form),         // collects every named field for us
+      body: data,
       headers: { Accept: 'application/json' },
     });
 
     if (response.ok) {
+      // Also send a copy to the private PDF (Portable Document Format) archive
+      fetch(ARCHIVE_URL, { method: 'POST', body: data }).catch(() => {});
       statusText.textContent = 'Message sent. I’ll reply within two working days.';
       form.reset();                     // clear the fields
     } else {
