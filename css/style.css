@@ -51,7 +51,8 @@ h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; margin: 0 0 1rem; 
 h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0 0 1rem; }
 a { color: var(--accent); }
 img { max-width: 100%; height: auto; }  /* images never overflow on small screens */
-p { max-width: 65ch; }                  /* readable line length */
+p { max-width: 65ch; } 
+.note{ max-width: 50ch; }                 /* readable line length */
 
 /* Visible keyboard focus: an accessibility requirement */
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
